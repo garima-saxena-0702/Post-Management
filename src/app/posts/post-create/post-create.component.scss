@@ -4,7 +4,23 @@ mat-form-field, textarea {
 
 }
 
-
 mat-spinner {
   margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.filePickDiv {
+  margin: 1em;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
 }
