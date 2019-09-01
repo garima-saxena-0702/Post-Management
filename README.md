@@ -1,3 +1,5 @@
+#This project is for Udemy mean stack course which deals with post creation, updation and deletion using MEAN stack.  
+
 # MeanCourse
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
