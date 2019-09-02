@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.authStatusSub.unsubscribe()
   }
 
   onSignup(form: NgForm) {

@@ -50,6 +50,9 @@ router.post('', checkAuth, multer({storage: storage}).single("image"), (req, res
         }
       })
     })
+    .catch(error => {
+      res.status(401).json({message: 'Creating post failed!'})
+    })
 });
 
 //Get all post
@@ -74,16 +77,23 @@ router.get('', (req, res, next) => {
         maxPosts: count
       });
     })
+    .catch(error => {
+      res.status(401).json({message: 'Fetching posts failed'})
+    })
 })
 
 
 //Delete a post
 router.delete("/:id", checkAuth, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+  .then(result => {
     if(result.n != 0)
     res.status(200).json({ message: "Post deleted!" });
     else
       res.status(401).json({message: 'Not Autherized'})
+  })
+  .catch(error => {
+    res.status(401).json({message: 'Fetching posts failed'})
   });
 });
 
@@ -110,18 +120,25 @@ router.put("/:id", checkAuth, multer({storage: storage}).single("image"), (req, 
       res.status(200).json({ message: "Update successful!" });
     else
       res.status(401).json({message: 'Not Autherized'})
+  })
+  .catch(error => {
+    res.status(401).json({message: "Coudn't update post"})
   });
 });
 
 
 //get a particular post
 router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id).then(post => {
+  Post.findById(req.params.id)
+  .then(post => {
     if(post) {
       res.status(200).json({post: post});
     }else {
       rest.status(404).json({message: 'Post not found'});
     }
+  })
+  .catch(error => {
+    res.status(401).json({message: 'Fetching posts failed'})
   })
 })
 

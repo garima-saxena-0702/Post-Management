@@ -22,7 +22,7 @@ export class AuthService {
     .subscribe(resposne => {
       this.router.navigate(['/']);
     }, error => {
-
+      this.authStatusListner.next(false);
     })
   }
 
@@ -43,6 +43,8 @@ export class AuthService {
           this.saveAuthData(token, expirationDate, this.userId);
           this.router.navigate(['/']);
         }
+      }, error => {
+        this.authStatusListner.next(false);
       })
   }
 
