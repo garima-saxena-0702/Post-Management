@@ -9,7 +9,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://Garima:HTMvGHPEZTSsOWZg@cluster0-tx4go.mongodb.net/node-angular?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://Garima:'+ process.env.MONGO_ATLAS_PW +'@cluster0-tx4go.mongodb.net/node-angular?retryWrites=true&w=majority')
   .then(() => {
     console.log('Database Connected Successfully');
   })
